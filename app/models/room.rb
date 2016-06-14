@@ -17,5 +17,7 @@ class Room < ActiveRecord::Base
   validates :title, :description, :beds, :guests, :image_url, presence: true
   validates_length_of :description, maximum: 400
   validates :beds, :guests, numericality: true
+  # Forma alterna
+  # validates :beds,numericality: {only_integer: true}
 
 end
