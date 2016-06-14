@@ -1,10 +1,10 @@
-<h2>The following messages avoud article creation</h2>
-<div class="alert alert-danger">
-  <% if @room.errors.any? %>
+<% if @room.errors.any? %>
+  <div class="alert alert-danger">
+    <h2>The following messages avoid article creation</h2>
     <ul>
       <% @room.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
-  <% end %>
-</div>
+  </div>
+<% end %>
