@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+
+  before_action :select_room, only:[:edit, :update, :destroy]
+
   def index
     @rooms = Room.all
   end
@@ -17,11 +20,9 @@ class RoomsController < ApplicationController
   end
 
   def edit
-    @room = Room.find_by(params[:id])
   end
 
   def update
-    @room = Room.find_by(params[:id])
     if @room.update(room_params)
       redirect_to rooms_path
     else
@@ -29,7 +30,17 @@ class RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    @room.destroy
+    redirect_to rooms_path
+  end
+
   protected
+
+    def select_room
+      @room = Room.find_by(params[:id])
+    end
+
     def room_params
       params.require(:room).permit(:title, :description, :beds, :guests, :image_url, :price_per_night)
     end
